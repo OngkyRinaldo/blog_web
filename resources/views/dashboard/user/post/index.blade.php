@@ -27,13 +27,13 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
-                                <th scope="col" class="px-2 py-2">No.</th>
-                                <th scope="col" class="px-2 py-2">Title</th>
-                                <th scope="col" class="px-2 py-2">Category</th>
-                                <th scope="col" class="px-2 py-2">Author</th>
-                                <th scope="col" class="px-2 py-2">Image</th>
-                                <th scope="col" class="px-2 py-2">Time</th>
-                                <th scope="col" class="px-2 py-2">Action</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">No.</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Title</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Category</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Author</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Image</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Time</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,26 +41,30 @@
 
                             @foreach ($posts as $post)
                             <tr class="bg-white border-b text-gray-900 cursor-pointer">
-                                <th scope="row" class="px-6 py-4 ">
+                                <th scope="row" class="px-2 py-2 md:px-6 md:py-4 ">
                                     {{ $loop->iteration }}
                                 </th>
-                                <td class="px-6 py-4">
+                                <td class="px-2 py-2 md:px-6 md:py-4">
                                     {{Str::limit($post->title, 46) }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-2 py-2 md:px-6 md:py-4">
+                                    {{ $post->category->title }}
+                                </td>
+                                <td class="px-2 py-2 md:px-6 md:py-4">
                                     {{ $post->post_author->username }}
                                 </td>
-                                <td class="px-6 py-4">
-                                    <img src="{{ asset('images/post/' . $post->image) }}"
+                                <td class="px-2 py-2 md:px-6 md:py-4">
+                                    <img src="{{ asset('/storage/posts/' . $post->image) }}"
                                         alt="{{Str::limit($post->title, 10) }}" width="75px">
                                 </td>
-                                <td class="px-6 py-4">
-                                <td>{{ $post->created_at->diffForHumans() }}</td>
+                                <td class="px-2 py-2 md:px-6 md:py-4">
+                                    {{ $post->created_at->diffForHumans() }}
                                 </td>
 
-                                <td class="px-6 py-4 flex gap-x-2 ">
+                                <td class="px-2 py-2 md:px-6 md:py-4 flex gap-x-2 ">
                                     <a href="{{ route('post.edit', $post->slug) }}"
                                         class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
+
 
                                     {{--
                                     <form onsubmit="return confirm('Are you sure you want to delete this post?');"

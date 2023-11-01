@@ -32,14 +32,17 @@
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 ">Select an
                             category</label>
                         <select id="category"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                            name="category">
                             <option selected>Choose a category</option>
+
                             @foreach ($categories as $category)
-
                             <option value="{{ $category->id }}">{{ $category->title }}</option>
-
                             @endforeach
+
                         </select>
+
+
 
 
                         @error('category')
@@ -49,13 +52,21 @@
                         @enderror
 
                     </div>
+
                     <div class="mb-6">
 
-                        <label for="content" class="block mb-2 text-sm font-medium text-gray-900 ">Your
+                        {{-- <label for="content" class="block mb-2 text-sm font-medium text-gray-900 ">Your
                             content</label>
+                        <input type="hidden" id="content" name="content" value="{{ old('content') }}">
                         <textarea id="content" rows="4"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
-                            placeholder="Write your thoughts here..."></textarea>
+                            placeholder="Write your thoughts here..." input="content"
+                            value="{{ old('content') }}"></textarea> --}}
+                        <label for="content" class="block mb-2 text-sm font-medium text-gray-900 ">Content</label>
+
+                        <input type="hidden" id="content" name="content" value="{{ old('content') }}">
+
+                        <trix-editor input="content"></trix-editor>
 
 
 
@@ -68,13 +79,49 @@
                     </div>
 
                     <div class="mb-6">
-                        <label for="tag" class="block mb-2 text-sm font-medium text-gray-900 ">Tag</label>
-                        <input type="text" id="tag"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d"
-                            placeholder="Create New tag..." @error('tag') is-invalid @enderror" name="tag" required
-                            value="{{ old('tag') }}">
+                        {{-- <label for="tag" class="block mb-2 text-sm font-medium text-gray-900 ">Tag</label>
+                        <select
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                            multiple="multiple" data-placeholder="Select a Tag" style="width: 100%" id="tag"
+                            name="tags[]">
 
-                        @error('title')
+                            @foreach ($tags as $tag)
+
+                            <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+
+                            @endforeach
+
+                        </select> --}}
+
+                        <label for="tag" class="form-label fw-bold">Tag</label>
+
+                        <select class="form-control fs-3" multiple="multiple" data-placeholder="Select a Tag"
+                            style="width: 100%" id="tag" name="tags[]">
+
+                            @foreach ($tags as $tag)
+
+                            <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+
+                            @endforeach
+
+                        </select>
+
+                        @error('tag')
+
+                        <p class=" text-red-500"> {{ $message }}</p>
+
+                        @enderror
+
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="image" class="block mb-2 text-sm font-medium text-gray-900 ">Image</label>
+                        <img class="img-preview  mx-auto block">
+                        <input type="file" id="image"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d"
+                            @error('image') is-invalid @enderror" name="image" onchange="previewImage()">
+
+                        @error('image')
 
                         <p class=" text-red-500"> {{ $message }}</p>
 
