@@ -2,17 +2,37 @@
 
 
 @section('title')
-Admin - Dashboard
+Admin - User
+@endsection
+
+@section('header')
+
+<div class="flex justify-between items-center">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Tags') }}
+    </h2>
+    <a href="{{ route('tag.create') }}"
+        class=" text-lg text-blue-600 leading-tight cursor-pointer hover:text-blue-800">Create New
+        Tag</a>
+</div>
+
+
 @endsection
 
 
 @section('main')
 
+@if (session('success'))
+
+<div class="mx-auto max-w-md bg-green-200 text-green-500 text-center py-4 px-8 rounded-lg mt-2" role="alert">
+    {{ session('success') }}
+</div>
+
+@endif
+
 <div class="py-8">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
-
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -45,7 +65,8 @@ Admin - Dashboard
                                 {{ $tag->created_at->diffForHumans() }}
                             </td>
                             <td class="px-6 py-4 flex gap-x-2 ">
-
+                                <a href="{{ route('tag.edit', $tag->slug) }}"
+                                    class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
                                 <form onsubmit="return confirm('Are you sure delete this tag ?')"
                                     action="{{ route('tag.destroy', $tag) }}" method="POST">
                                     @csrf

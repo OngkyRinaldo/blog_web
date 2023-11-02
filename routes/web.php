@@ -38,7 +38,6 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->middleware(['checkRole:admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'admin'])->name('admin');
-        Route::get('/posts', [HomeController::class, 'post'])->name('admin.post');
         Route::get('/users', [DashboardController::class, 'user'])->name('admin.user');
         Route::delete('/users/{user}', [DashboardController::class, 'deleteUser'])->name('admin.deleteUser');
         Route::get('/categories', [DashboardController::class, 'category'])->name('admin.category');

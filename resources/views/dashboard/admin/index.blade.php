@@ -7,10 +7,15 @@ Admin - Dashboard
 
 @section('header')
 
+<div class="flex justify-between items-center">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Welcome {{ $user }}
+    </h2>
+    <a href="{{ route('post.create') }}"
+        class=" text-lg text-blue-600 leading-tight cursor-pointer hover:text-blue-800">Create New
+        Post</a>
+</div>
 
-<h2 class="font-semibold text-xl text-gray-800 leading-tight">
-    Welcome {{ $user }}
-</h2>
 
 @endsection
 

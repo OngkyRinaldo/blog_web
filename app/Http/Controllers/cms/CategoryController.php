@@ -5,6 +5,7 @@ namespace App\Http\Controllers\cms;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -18,7 +19,7 @@ class CategoryController extends Controller
         return view('dashboard.user.category.index', compact('categories'));
     }
 
-    /**
+    /** 
      * Show the form for creating a new resource.
      */
     public function create()
@@ -46,8 +47,16 @@ class CategoryController extends Controller
         ]);
 
 
-        return redirect()->route('category.index')
-            ->with('success', 'Category Has Been Created Successfully');
+        $userRole = Auth::user()->role;
+
+
+        if ($userRole == 'admin') {
+            return redirect()->route('admin.category')
+                ->with('success', 'Category Has Been Created Successfully');
+        } else {
+            return redirect()->route('category.index')
+                ->with('success', 'Category Has Been Created Successfully');
+        }
     }
 
     /**
@@ -85,8 +94,16 @@ class CategoryController extends Controller
 
         ]);
 
-        return redirect()->route('category.index')
-            ->with('success', 'Category Has Been Updated Successfully');
+        $userRole = Auth::user()->role;
+
+
+        if ($userRole == 'admin') {
+            return redirect()->route('admin.category')
+                ->with('success', 'Category Has Been Updated Successfully');
+        } else {
+            return redirect()->route('category.index')
+                ->with('success', 'Category Has Been Updated Successfully');
+        }
     }
 
     /**
@@ -96,7 +113,15 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('category.index')
-            ->with('success', 'Category Has Been Deleted Successfully');
+        $userRole = Auth::user()->role;
+
+
+        if ($userRole == 'admin') {
+            return redirect()->route('admin.category')
+                ->with('success', 'Category Has Been Deleted Successfully');
+        } else {
+            return redirect()->route('category.index')
+                ->with('success', 'Category Has Been Deleted Successfully');
+        }
     }
 }

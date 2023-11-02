@@ -1,3 +1,10 @@
+@section('title')
+
+{{Str::limit($post->title, 10) }} - Post
+
+@endsection
+
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -41,9 +48,9 @@
                             @endif
                         </div>
 
-                        <div class="text-center text-slate-600">
+                        <div class="text-justify text-slate-600">
                             <p>
-                                {{$post->content }}
+                                {!! $post->content !!}
                             </p>
                         </div>
                     </div>
@@ -58,9 +65,7 @@
                         </div>
                     </div>
 
-
                 </div>
-
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\cms;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class TagController extends Controller
@@ -45,9 +46,16 @@ class TagController extends Controller
 
         ]);
 
+        $userRole = Auth::user()->role;
 
-        return redirect()->route('tag.index')
-            ->with('success', 'Tag Has Been Created Successfully');
+
+        if ($userRole == 'admin') {
+            return redirect()->route('admin.tag')
+                ->with('success', 'Tag Has Been Created Successfully');
+        } else {
+            return redirect()->route('tag.index')
+                ->with('success', 'Tag Has Been Created Successfully');
+        }
     }
 
     /**
@@ -85,8 +93,16 @@ class TagController extends Controller
 
         ]);
 
-        return redirect()->route('tag.index')
-            ->with('success', 'Tag Has Been Updated Successfully');
+        $userRole = Auth::user()->role;
+
+
+        if ($userRole == 'admin') {
+            return redirect()->route('admin.tag')
+                ->with('success', 'Tag Has Been Updated Successfully');
+        } else {
+            return redirect()->route('tag.index')
+                ->with('success', 'Tag Has Been Updated Successfully');
+        }
     }
 
     /**
@@ -96,7 +112,15 @@ class TagController extends Controller
     {
         $tag->delete();
 
-        return redirect()->route('tag.index')
-            ->with('success', 'Tag Has Been Deleted Successfully');
+        $userRole = Auth::user()->role;
+
+
+        if ($userRole == 'admin') {
+            return redirect()->route('admin.tag')
+                ->with('success', 'Tag Has Been Deleted Successfully');
+        } else {
+            return redirect()->route('tag.index')
+                ->with('success', 'Tag Has Been Deleted Successfully');
+        }
     }
 }

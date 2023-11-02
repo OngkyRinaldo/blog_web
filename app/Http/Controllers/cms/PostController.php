@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -43,9 +44,9 @@ class PostController extends Controller
     {
         $request->validate([
 
-            'title' => 'required|unique:posts,title|min:38',
+            'title' => 'required|unique:posts,title|max:200|min:38',
             'category' => 'required',
-            'content' => 'required',
+            'content' => 'required|min:500',
             'tags' => 'required',
             'image' => 'required|image|mimes:jpg,png|max:1024'
 
@@ -68,9 +69,16 @@ class PostController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        //redirect to index
-        return redirect()->route('post.index')
-            ->with('success', 'Post Has Been Created Successfully');
+        $userRole = Auth::user()->role;
+
+
+        if ($userRole == 'admin') {
+            return redirect()->route('dashboard')
+                ->with('success', 'Post Has Been Created Successfully');
+        } else {
+            return redirect()->route('post.index')
+                ->with('success', 'Post Has Been Created Successfully');
+        }
     }
 
     /**
@@ -106,9 +114,9 @@ class PostController extends Controller
         //validate form
         $request->validate([
 
-            'title' => 'required|min:38',
+            'title' => 'required|max:200|min:38',
             'category' => 'required',
-            'content' => 'required',
+            'content' => 'required|min:500',
             'tags' => 'required',
             'image' => 'required|image|mimes:jpg,png|max:1024'
 
@@ -146,9 +154,16 @@ class PostController extends Controller
         $post->tags()
             ->sync($request->tags);
 
+        $userRole = Auth::user()->role;
 
-        return redirect()->route('post.index')
-            ->with('success', 'Post Has Been Updated Successfully');
+
+        if ($userRole == 'admin') {
+            return redirect()->route('dashboard')
+                ->with('success', 'Post Has Been Updated Successfully');
+        } else {
+            return redirect()->route('post.index')
+                ->with('success', 'Post Has Been Updated Successfully');
+        }
     }
 
     /**
@@ -162,7 +177,15 @@ class PostController extends Controller
         //delete post
         $post->delete();
 
-        //redirect to index
-        return redirect()->route('post.index')->with('success', 'Post Has Been Deleted Successfully');
+        $userRole = Auth::user()->role;
+
+
+        if ($userRole == 'admin') {
+            return redirect()->route('dashboard')
+                ->with('success', 'Post Has Been Deleted Successfully');
+        } else {
+            return redirect()->route('post.index')
+                ->with('success', 'Post Has Been Deleted Successfully');
+        }
     }
 }

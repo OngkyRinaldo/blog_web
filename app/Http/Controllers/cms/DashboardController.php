@@ -29,8 +29,6 @@ class DashboardController extends Controller
         } else {
             return view('dashboard', compact('user', 'posts'));
         }
-
-        return view('dashboard', compact('posts'));
     }
 
     public function category()

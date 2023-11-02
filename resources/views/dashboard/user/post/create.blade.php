@@ -1,14 +1,22 @@
+@section('title')
+
+Create - Post
+
+@endsection
+
+
 <x-app-layout>
     <x-slot name="header">
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Create New Post') }}
         </h2>
+
     </x-slot>
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
                 <form action="{{ route('post.store') }}" method="POST" class="p-5" enctype="multipart/form-data">
                     @csrf
 
@@ -28,7 +36,6 @@
                     </div>
 
                     <div class="mb-6">
-
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 ">Select an
                             category</label>
                         <select id="category"
@@ -42,9 +49,6 @@
 
                         </select>
 
-
-
-
                         @error('category')
 
                         <p class=" text-red-500"> {{ $message }}</p>
@@ -54,14 +58,9 @@
                     </div>
 
                     <div class="mb-6">
-
                         <label for="content" class="block mb-2 text-sm font-medium text-gray-900 ">Content</label>
-
                         <input type="hidden" id="content" name="content" value="{{ old('content') }}">
-
                         <trix-editor input="content"></trix-editor>
-
-
 
                         @error('content')
 
@@ -72,9 +71,7 @@
                     </div>
 
                     <div class="mb-6">
-
                         <label for="tag" class="form-label fw-bold">Tag</label>
-
                         <select class="form-control fs-3" multiple="multiple" data-placeholder="Select a Tag"
                             style="width: 100%" id="tag" name="tags[]">
 

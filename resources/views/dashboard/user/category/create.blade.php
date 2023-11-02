@@ -1,3 +1,7 @@
+@section('title')
+Create - Category
+@endsection
+
 <x-app-layout>
     <x-slot name="header">
 

@@ -1,18 +1,27 @@
+@section('title')
+
+Edit {{Str::limit($post->title, 10) }} - Post
+
+@endsection
+
+
 <x-app-layout>
     <x-slot name="header">
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $post->title }}
         </h2>
+
     </x-slot>
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
                 <form action="{{ route('post.update', $post->slug) }}" method="POST" class="p-5"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
+
                     <div class="mb-6">
                         <label for="title" class="block mb-2 text-sm font-medium text-gray-900 ">Title</label>
                         <input type="text" id="title"
@@ -29,7 +38,6 @@
                     </div>
 
                     <div class="mb-6">
-
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 ">Select an
                             category</label>
                         <select id="category"
@@ -52,14 +60,9 @@
                     </div>
 
                     <div class="mb-6">
-
                         <label for="content" class="block mb-2 text-sm font-medium text-gray-900 ">Content</label>
-
                         <input type="hidden" id="content" name="content" value="{{ old('content') }}">
-
                         <trix-editor input="content">{!! old('content') ?? $post->content !!}</trix-editor>
-
-
 
                         @error('content')
 
@@ -70,9 +73,7 @@
                     </div>
 
                     <div class="mb-6">
-
                         <label for="tag" class="form-label fw-bold">Tag</label>
-
                         <select class="form-control fs-3" multiple="multiple" data-placeholder="Select a Tag"
                             style="width: 100%" id="tag" name="tags[]">
 
@@ -94,9 +95,7 @@
 
                     <div class="mb-6">
                         <label for="image" class="block mb-2 text-sm font-medium text-gray-900 ">Image</label>
-
                         @if ($post->image)
-
                         <img src="{{ asset('/storage/posts/' . $post->image) }}"
                             class="img-preview max-w-md block mx-auto ">
 
