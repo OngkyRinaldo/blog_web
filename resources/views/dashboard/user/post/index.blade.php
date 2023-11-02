@@ -27,7 +27,6 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
-                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">No.</th>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Title</th>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Category</th>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Author</th>
@@ -43,9 +42,6 @@
 
                             @if ($post->post_author->id == Auth::user()->id)
                             <tr class="bg-white border-b text-gray-900 cursor-pointer">
-                                <th scope="row" class="px-2 py-2 md:px-6 md:py-4 ">
-                                    {{ $loop->iteration }}
-                                </th>
                                 <td class="px-2 py-2 md:px-6 md:py-4">
                                     {{Str::limit($post->title, 46) }}
                                 </td>
@@ -80,6 +76,8 @@
                             </tr>
                             @endif
                             @endforeach
+
+
 
 
                         </tbody>

@@ -18,7 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
+
         $posts = Post::with('category', 'post_author')->latest()->get();
+
         return view('dashboard.user.post.index', compact('posts'));
     }
 
