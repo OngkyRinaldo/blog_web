@@ -40,6 +40,8 @@
                         <tbody>
 
                             @foreach ($posts as $post)
+
+                            @if ($post->post_author->id == Auth::user()->id)
                             <tr class="bg-white border-b text-gray-900 cursor-pointer">
                                 <th scope="row" class="px-2 py-2 md:px-6 md:py-4 ">
                                     {{ $loop->iteration }}
@@ -64,18 +66,19 @@
                                 <td class="px-2 py-2 md:px-6 md:py-4 flex gap-x-2 ">
                                     <a href="{{ route('post.edit', $post->slug) }}"
                                         class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
-
-
-                                    {{--
-                                    <form onsubmit="return confirm('Are you sure you want to delete this post?');"
+                                    <a href="{{ route('post.show', $post->slug) }}"
+                                        class="bg-blue-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Detail</a>
+                                    <form onsubmit="return confirm('Are you sure delete this post ?');"
                                         action="{{ route('post.destroy', $post) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
                                             class="bg-red-500  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Delete</button>
-                                    </form> --}}
+                                    </form>
+
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
 
 

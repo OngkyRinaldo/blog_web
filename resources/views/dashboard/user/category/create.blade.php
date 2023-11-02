@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Create New Category') }}
         </h2>
+
     </x-slot>
 
     <div class="py-8">
@@ -11,7 +13,6 @@
 
                 <form action="{{ route('category.store') }}" method="POST" class="p-5">
                     @csrf
-
                     <div class="mb-6">
                         <label for="title" class="block mb-2 text-sm font-medium text-gray-900 ">Title</label>
                         <input type="text" id="title"

@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -73,32 +74,93 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return view('dashboard.user.post.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        $tags = Tag::all();
+
+        $post_tagIDS = $post
+            ->tags
+            ->pluck('id')
+            ->toArray();
+
+        $categories = Category::all();
+
+        return view('dashboard.user.post.edit', compact('post', 'tags', 'categories', 'post_tagIDS'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        //validate form
+        $request->validate([
+
+            'title' => 'required|min:38',
+            'category' => 'required',
+            'content' => 'required',
+            'tags' => 'required',
+            'image' => 'required|image|mimes:jpg,png|max:1024'
+
+        ]);
+
+        //check if image is uploaded
+        if ($request->hasFile('image')) {
+
+            //upload new image
+            $image = $request->file('image');
+            $image->storeAs('public/posts', $image->hashName());
+
+            //delete old image
+            Storage::delete('public/posts/' . $post->image);
+
+            //update post with new image
+            $post->update([
+                'title' => Str::title($request->title),
+                'slug' => Str::slug($request->title),
+                'category_id' => $request->category,
+                'content' => $request->content,
+                'descriptions' => Str::limit(strip_tags($request->content, 100)),
+                'author' => auth()->id(),
+                'image' => $image->hashName()
+            ]);
+        } else {
+
+            //update post without image
+            $post->update([
+                'title'     => $request->title,
+                'content'   => $request->content
+            ]);
+        }
+
+        $post->tags()
+            ->sync($request->tags);
+
+
+        return redirect()->route('post.index')
+            ->with('success', 'Post Has Been Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        //delete image
+        Storage::delete('public/posts/' . $post->image);
+
+        //delete post
+        $post->delete();
+
+        //redirect to index
+        return redirect()->route('post.index')->with('success', 'Post Has Been Deleted Successfully');
     }
 }

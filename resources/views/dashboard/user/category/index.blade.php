@@ -56,18 +56,11 @@
                                 <td class="px-6 py-4">
                                     {{ $category->created_at->diffForHumans() }}
                                 </td>
-                                <td class="px-6 py-4 flex gap-x-2 ">
+                                <td class="px-6 py-4 ">
                                     <a href="{{ route('category.edit', $category->slug) }}"
                                         class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
 
-                                    {{--
-                                    <form onsubmit="return confirm('Are you sure you want to delete this category?');"
-                                        action="{{ route('category.destroy', $category) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Delete</button>
-                                    </form> --}}
+
                                 </td>
                             </tr>
                             @endforeach
