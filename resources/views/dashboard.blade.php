@@ -24,8 +24,6 @@
                         <tbody>
 
                             @foreach ($posts as $post)
-
-
                             <tr class="bg-white border-b text-gray-900 cursor-pointer">
                                 <th scope="row" class="px-6 py-4 ">
                                     {{ $loop->iteration }}

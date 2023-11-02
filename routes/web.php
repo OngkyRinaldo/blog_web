@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\cms\CategoryController;
-use App\Http\Controllers\cms\DashboardController;
-use App\Http\Controllers\cms\PostController;
-use App\Http\Controllers\cms\TagController;
+use App\Http\Controllers\cms\user\CategoryController;
+use App\Http\Controllers\cms\user\DashboardController;
+use App\Http\Controllers\cms\user\PostController;
+use App\Http\Controllers\cms\user\TagController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
