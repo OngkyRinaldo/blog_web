@@ -33,11 +33,9 @@ Admin - Category
 <div class="py-8">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
-
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                    <thead class="text-center text-xs text-gray-700 uppercase bg-gray-50 ">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 No.
@@ -56,7 +54,7 @@ Admin - Category
                     <tbody>
 
                         @foreach ($categories as $category)
-                        <tr class="bg-white border-b text-gray-900 cursor-pointer">
+                        <tr class="text-center bg-white border-b text-gray-900 cursor-pointer">
                             <th scope="row" class="px-6 py-4 ">
                                 {{ $loop->iteration }}
                             </th>
@@ -66,16 +64,17 @@ Admin - Category
                             <td class="px-6 py-4">
                                 {{ $category->created_at->diffForHumans() }}
                             </td>
-                            <td class="px-6 py-4 flex flex-col gap-y-2 md:flex-row md:gap-x-2 md:gap-y-0  ">
+                            <td
+                                class="px-6 py-4 flex justify-center items-center flex-col gap-y-2 md:flex-row md:gap-x-2 md:gap-y-0  ">
                                 <a href="{{ route('category.edit', $category->slug) }}"
-                                    class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
+                                    class="bg-yellow-400 w-full   py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
 
                                 <form onsubmit="return confirm('Are you sure delete this category ?')"
-                                    action="{{ route('category.destroy', $category) }}" method="POST">
+                                    action="{{ route('category.destroy', $category) }}" method="POST" class="w-full">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                        class="bg-red-500  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Delete</button>
+                                        class="bg-red-500 w-full py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Delete</button>
                                 </form>
 
                             </td>

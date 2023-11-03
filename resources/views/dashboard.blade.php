@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="relative overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table class="text-center w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">No.</th>
@@ -28,7 +28,7 @@
                         <tbody>
 
                             @foreach ($posts as $post)
-                            <tr class="bg-white border-b text-gray-900 cursor-pointer">
+                            <tr class="text-center bg-white border-b text-gray-900 cursor-pointer">
                                 <th scope="row" class="px-6 py-4 ">
                                     {{ $loop->iteration }}
                                 </th>
@@ -51,9 +51,6 @@
                             </tr>
 
                             @endforeach
-
-
-
 
                         </tbody>
 

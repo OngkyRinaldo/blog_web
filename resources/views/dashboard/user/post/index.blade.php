@@ -32,7 +32,7 @@ Dashboard - Post
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                        <thead class="text-center text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Title</th>
                                 <th scope="col" class="hidden md:table-cell px-2 py-2 md:px-6 md:py-4">Category</th>
@@ -48,7 +48,7 @@ Dashboard - Post
                             @foreach ($posts as $post)
                             @if ($post->post_author->id == Auth::user()->id)
 
-                            <tr class="bg-white border-b text-gray-900 cursor-pointer">
+                            <tr class="text-center bg-white border-b text-gray-900 cursor-pointer">
 
                                 <td class="px-2 py-2 md:px-6 md:py-4">
                                     {{Str::limit($post->title, 46) }}
@@ -72,7 +72,7 @@ Dashboard - Post
                                 </td>
 
                                 <td
-                                    class="px-2 py-2 md:px-6 md:py-4 flex flex-col gap-y-2 md:flex-row md:gap-x-2 md:gap-y-0 ">
+                                    class="px-2 py-2 md:px-6 md:py-4 flex flex-col gap-y-2 xl:flex-row xl:gap-x-2 xl:gap-y-0 ">
 
                                     <a href="{{ route('post.edit', $post->slug) }}"
                                         class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
@@ -85,7 +85,7 @@ Dashboard - Post
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="bg-red-500  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Delete</button>
+                                            class="bg-red-500 w-full py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Delete</button>
                                     </form>
 
                                 </td>

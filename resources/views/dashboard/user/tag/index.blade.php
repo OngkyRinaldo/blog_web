@@ -33,7 +33,7 @@ Dashboard - Tag
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                        <thead class="text-center text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
                                     No.
@@ -52,7 +52,7 @@ Dashboard - Tag
 
                         <tbody>
                             @foreach ($tags as $tag)
-                            <tr class="bg-white border-b text-gray-900 cursor-pointer">
+                            <tr class="text-center bg-white border-b text-gray-900 cursor-pointer">
                                 <th scope="row" class="px-6 py-4 ">
                                     {{ $loop->iteration }}
                                 </th>
@@ -62,7 +62,7 @@ Dashboard - Tag
                                 <td class="px-6 py-4">
                                     {{ $tag->created_at->diffForHumans() }}
                                 </td>
-                                <td class="px-6 py-4 flex gap-x-2 ">
+                                <td class="px-6 py-4 ">
                                     <a href="{{ route('tag.edit', $tag->slug) }}"
                                         class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
                                 </td>

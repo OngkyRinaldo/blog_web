@@ -30,9 +30,9 @@ Dashboard - Category
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="relative overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table class=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                        <thead class="text-center text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
                                     No.
@@ -51,7 +51,7 @@ Dashboard - Category
 
                         <tbody>
                             @foreach ($categories as $category)
-                            <tr class="bg-white border-b text-gray-900 cursor-pointer">
+                            <tr class="text-center bg-white border-b text-gray-900 cursor-pointer">
                                 <th scope="row" class="px-6 py-4 ">
                                     {{ $loop->iteration }}
                                 </th>
@@ -61,7 +61,7 @@ Dashboard - Category
                                 <td class="px-6 py-4">
                                     {{ $category->created_at->diffForHumans() }}
                                 </td>
-                                <td class="px-6 py-4 ">
+                                <td class="px-6 py-4">
                                     <a href="{{ route('category.edit', $category->slug) }}"
                                         class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
                                 </td>
