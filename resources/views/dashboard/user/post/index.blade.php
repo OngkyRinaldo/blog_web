@@ -35,12 +35,13 @@ Dashboard - Post
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Title</th>
-                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Category</th>
+                                <th scope="col" class="hidden md:table-cell px-2 py-2 md:px-6 md:py-4">Category</th>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Author</th>
-                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Image</th>
-                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Time</th>
+                                <th scope="col" class="hidden md:table-cell px-2 py-2 md:px-6 md:py-4">Image</th>
+                                <th scope="col" class="hidden md:table-cell px-2 py-2 md:px-6 md:py-4">Time</th>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Action</th>
                             </tr>
+
                         </thead>
 
                         <tbody>
@@ -53,7 +54,7 @@ Dashboard - Post
                                     {{Str::limit($post->title, 46) }}
                                 </td>
 
-                                <td class="px-2 py-2 md:px-6 md:py-4">
+                                <td class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">
                                     {{ $post->category->title }}
                                 </td>
 
@@ -61,16 +62,17 @@ Dashboard - Post
                                     {{ $post->post_author->username }}
                                 </td>
 
-                                <td class="px-2 py-2 md:px-6 md:py-4">
+                                <td class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">
                                     <img src="{{ asset('/storage/posts/' . $post->image) }}"
                                         alt="{{Str::limit($post->title, 10) }}" width="75px">
                                 </td>
 
-                                <td class="px-2 py-2 md:px-6 md:py-4">
+                                <td class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">
                                     {{ $post->created_at->diffForHumans() }}
                                 </td>
 
-                                <td class="px-2 py-2 md:px-6 md:py-4 flex gap-x-2 ">
+                                <td
+                                    class="px-2 py-2 md:px-6 md:py-4 flex flex-col gap-y-2 md:flex-row md:gap-x-2 md:gap-y-0 ">
 
                                     <a href="{{ route('post.edit', $post->slug) }}"
                                         class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>

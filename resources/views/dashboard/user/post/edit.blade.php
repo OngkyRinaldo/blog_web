@@ -94,19 +94,19 @@ Edit {{Str::limit($post->title, 10) }} - Post
                     </div>
 
                     <div class="mb-6">
-                        <label for="image" class="block mb-2 text-sm font-medium text-gray-900 ">Image</label>
+                        <label for="image" class=" block mb-2 text-sm font-medium text-gray-900 ">Image</label>
                         @if ($post->image)
                         <img src="{{ asset('/storage/posts/' . $post->image) }}"
-                            class="img-preview max-w-md block mx-auto ">
+                            class="img-preview w-sm md:max-w-md block mx-auto object-cover ">
 
                         @else
 
-                        <img class="img-preview img-fluid md-3 col-sm-5  ">
+                        <img class="img-preview img-fluid md-3 col-sm-5">
 
                         @endif
 
                         <input type="file" id="image"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d"
+                            class="mt-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d"
                             @error('image') is-invalid @enderror" name="image" onchange="previewImage()">
                         @error('image')
 

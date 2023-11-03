@@ -18,10 +18,10 @@
                             <tr>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">No.</th>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Title</th>
-                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Category</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">Category</th>
                                 <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Author</th>
-                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Image</th>
-                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Time</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">Image</th>
+                                <th scope="col" class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">Time</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,17 +35,17 @@
                                 <td class="px-2 py-2 md:px-6 md:py-4">
                                     {{Str::limit($post->title, 46) }}
                                 </td>
-                                <td class="px-2 py-2 md:px-6 md:py-4">
+                                <td class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">
                                     {{ $post->category->title }}
                                 </td>
                                 <td class="px-2 py-2 md:px-6 md:py-4">
                                     {{ $post->post_author->username }}
                                 </td>
-                                <td class="px-2 py-2 md:px-6 md:py-4">
+                                <td class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">
                                     <img src="{{ asset('/storage/posts/' . $post->image) }}"
                                         alt="{{Str::limit($post->title, 10) }}" width="75px">
                                 </td>
-                                <td class="px-2 py-2 md:px-6 md:py-4">
+                                <td class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">
                                     {{ $post->created_at->diffForHumans() }}
                                 </td>
                             </tr>

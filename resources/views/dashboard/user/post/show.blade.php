@@ -17,20 +17,20 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-5">
-                    <h2 class="font-semibold text-lg text-gray-800 leading-tight">
+                    <h2 class="font-semibold md:text-lg text-gray-800 leading-tight">
                         {{$post->title }}
                     </h2>
 
                     <div class="flex justify-between items-center gap-x-4 mt-2">
-                        <p class="font-semibold text-lg text-slate-600 leading-tight mt-2 ">
+                        <p class=" font-semibold md:text-lg text-slate-600 leading-tight mt-2 ">
                             {{ $post->category->title }}
                         </p>
 
                         <div class="flex gap-x-4">
-                            <p class=" font-semibold text-lg text-slate-600 leading-tight">
+                            <p class=" font-semibold md:text-lg text-slate-600 leading-tight">
                                 Created By: {{ $post->post_author->username }}
                             </p>
-                            <p class=" font-semibold text-lg text-slate-600  leading-tight">
+                            <p class=" font-semibold md:text-lg text-slate-600  leading-tight">
                                 {{ $post->created_at->diffForHumans() }}
                             </p>
                         </div>
@@ -41,10 +41,10 @@
                         <div class="text-center">
                             @if($post->image)
                             <img src="{{ asset('/storage/posts/' . $post->image) }}" alt="{{ $post->title }}"
-                                class="img-fluid mb-3">
+                                class="img-fluid mb-5">
                             @else
                             <img src="https://source.unsplash.com/1200x400?{{ $post->category->title }}" alt=""
-                                class="img-fluid mb-3">
+                                class="img-fluid mb-5">
                             @endif
                         </div>
 

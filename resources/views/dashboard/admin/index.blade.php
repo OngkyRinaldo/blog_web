@@ -25,16 +25,21 @@ Admin - Dashboard
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="relative overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table class="p-4 md:p-0 w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                         <tr>
-                            <th scope="col" class="px-2 py-2 md:px-6 md:py-4">No.</th>
-                            <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Title</th>
-                            <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Category</th>
-                            <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Author</th>
-                            <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Image</th>
-                            <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Time</th>
-                            <th scope="col" class="px-2 py-2 md:px-6 md:py-4">Action</th>
+                            <th scope="col" class="text-sm md:text-base px-1 py-2 md:px-6 md:py-4">No.</th>
+                            <th scope="col" class="text-sm md:text-base px-1 py-2 md:px-6 md:py-4">Title</th>
+                            <th scope="col" class="text-sm md:text-base px-1 py-2 md:px-6 md:py-4 hidden md:table-cell">
+                                Category</th>
+                            <th scope="col" class="text-sm md:text-base px-1 py-2 md:px-6 md:py-4">Author</th>
+                            <th scope="col" class="text-sm md:text-base px-1 py-2 md:px-6 md:py-4 hidden md:table-cell">
+                                Image
+                            </th>
+                            <th scope="col" class="text-sm md:text-base px-1 py-2 md:px-6 md:py-4 hidden md:table-cell">
+                                Time
+                            </th>
+                            <th scope="col" class="text-sm md:text-base px-1 py-2 md:px-6 md:py-4">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,24 +50,25 @@ Admin - Dashboard
                             <th scope="row" class="px-6 py-4 ">
                                 {{ $loop->iteration }}
                             </th>
-                            <td class="px-2 py-2 md:px-6 md:py-4">
+                            <td class="text-xs md:text-base px-2 py-2 md:px-6 md:py-4">
                                 {{Str::limit($post->title, 46) }}
                             </td>
-                            <td class="px-2 py-2 md:px-6 md:py-4">
+                            <td class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">
                                 {{ $post->category->title }}
                             </td>
                             <td class="px-2 py-2 md:px-6 md:py-4">
                                 {{ $post->post_author->username }}
                             </td>
-                            <td class="px-2 py-2 md:px-6 md:py-4">
+                            <td class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">
                                 <img src="{{ asset('/storage/posts/' . $post->image) }}"
                                     alt="{{Str::limit($post->title, 10) }}" width="75px">
                             </td>
-                            <td class="px-2 py-2 md:px-6 md:py-4">
+                            <td class="px-2 py-2 md:px-6 md:py-4 hidden md:table-cell">
                                 {{ $post->created_at->diffForHumans() }}
                             </td>
 
-                            <td class="px-2 py-2 md:px-6 md:py-4 flex gap-x-2 ">
+                            <td
+                                class="px-2 py-2 md:px-6 md:py-4 flex flex-col gap-y-2 md:flex-row md:gap-x-2 md:gap-y-0 ">
                                 <a href="{{ route('post.edit', $post->slug) }}"
                                     class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
                                 <a href="{{ route('post.show', $post->slug) }}"

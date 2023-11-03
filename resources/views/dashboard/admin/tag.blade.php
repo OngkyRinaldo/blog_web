@@ -64,7 +64,7 @@ Admin - User
                             <td class="px-6 py-4">
                                 {{ $tag->created_at->diffForHumans() }}
                             </td>
-                            <td class="px-6 py-4 flex gap-x-2 ">
+                            <td class="px-6 py-4 flex flex-col gap-y-2 md:flex-row md:gap-x-2 md:gap-y-0  ">
                                 <a href="{{ route('tag.edit', $tag->slug) }}"
                                     class="bg-yellow-400  py-2 px-4 md:py-3 md:px-6 rounded-lg hover:font-semibold">Edit</a>
                                 <form onsubmit="return confirm('Are you sure delete this tag ?')"
