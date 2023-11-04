@@ -3,6 +3,7 @@
 
 @section('main')
 
-<x-main.home.Carousel />
+<x-main.home.carousel />
+<x-main.home.main />
 
 @endsection
