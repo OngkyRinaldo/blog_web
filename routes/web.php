@@ -5,6 +5,7 @@ use App\Http\Controllers\cms\CategoryController;
 use App\Http\Controllers\cms\DashboardController;
 use App\Http\Controllers\cms\PostController;
 use App\Http\Controllers\cms\TagController;
+use App\Http\Controllers\Pagecontroller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -45,6 +44,10 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+
+Route::controller(Pagecontroller::class)->group(function () {
+    Route::get('/', 'index')->name('guest.index');
+});
 
 
 require __DIR__ . '/auth.php';

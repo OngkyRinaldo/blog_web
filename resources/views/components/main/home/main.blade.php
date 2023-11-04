@@ -218,10 +218,11 @@
                 </div>
             </div>
 
+
         </div>
 
         <div class="mt-10 text-end w-full">
-            <a href="#" class="w-full bg-slate-500 text-white py-2 px-4 rounded-md">Show more stories</a>
+            <a href="#" class="w-full bg-black text-white py-2 px-4 rounded-md">Show more stories</a>
         </div>
 
     </div>

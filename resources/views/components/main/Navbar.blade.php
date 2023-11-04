@@ -26,7 +26,8 @@
 
         </ul>
         <div class="flex justify-between items-center pt-4 pb-2 md:pt-0   md:px-0">
-            <h2 class="font-bold text-4xl md:text-7xl text-black">B<span class="text-red-500">Log</span> </h2>
+            <a href="{{ route('guest.index') }}" class="font-bold text-4xl md:text-7xl text-black">B<span
+                    class="text-red-500">Log</span> </a>
 
             <input type="search" class="py-2 px-4 rounded-lg" placeholder="search...">
         </div>

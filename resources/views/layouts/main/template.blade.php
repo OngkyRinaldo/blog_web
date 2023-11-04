@@ -35,7 +35,7 @@
         @yield('main')
     </main>
 
-    <x-main.footer />
+    <x-main.footer.index />
 
     <script>
         // Select the paragraph element by its ID
