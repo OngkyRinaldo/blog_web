@@ -31,7 +31,7 @@
 
 
     <!-- Page Content -->
-    <main class="container mx-auto">
+    <main class="container mx-auto min-h-screen">
         @yield('main')
     </main>
 

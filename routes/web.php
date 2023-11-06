@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\cms\CategoryController;
 use App\Http\Controllers\cms\DashboardController;
 use App\Http\Controllers\cms\PostController;
@@ -47,6 +46,11 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(Pagecontroller::class)->group(function () {
     Route::get('/', 'index')->name('guest.index');
+    Route::get('posts', 'posts')->name('guest.posts');
+    Route::get('posts/{post}', 'post')->name('guest.post');
+    Route::get('category/{category}', 'category')->name('guest.category');
+    Route::get('authors/{user}', 'author')->name('guest.author');
+    Route::get('tags/{tag}', 'tag')->name('guest.tag');
 });
 
 

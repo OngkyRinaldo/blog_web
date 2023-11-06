@@ -1,13 +1,29 @@
 @extends('layouts.main.template')
 
+@section('title')
+Home - Blog
+
+@endsection
+
 
 @section('main')
-@if (!$posts->count())
-{{-- carousel --}}
-<x-main.home.carousel />
-@else
+
+<div class=" mt-5 p-5">
+    <form action="{{ route('guest.index') }}">
+
+        <div class="flex justify-center md:justify-end items-center gap-x-2">
+            <input type="text" class="py-2 px-4 rounded-lg w-full md:w-fit" placeholder="search..." name="search"
+                value="{{ request('search') }}">
+            <button class="py-2 px-4 bg-black text-white rounded-md">Search</button>
+
+        </div>
+    </form>
+</div>
+
+@if ($posts->count())
 <section class="max-h-fit mt-5 ">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-1 md:gap-x-3 bg-black  rounded-md">
+
+    <div class=" grid grid-cols-1 md:grid-cols-2 gap-x-1 md:gap-x-3 bg-black rounded-md">
         <div class="h-full md:h-96 md:py-10 w-full p-5">
             @if ($posts[0]->image)
 
@@ -32,16 +48,12 @@
 
             </p>
 
-            <a href="#" class="block w-fit rounded-md bg-slate-700 text-white py-2 px-4 mt-2 md:mt-5">Read More</a>
+            <a href="{{ route('guest.post', $posts[0]) }}"
+                class="block w-fit rounded-md bg-slate-700 text-white py-2 px-4 mt-2 md:mt-5">Read More</a>
         </div>
     </div>
 </section>
-@endif
 
-@if ($posts->count()
-< 2) <x-main.home.main />
-
-@else
 <section class="flex justify-start items-start gap-x-5 min-h-screen w-full">
     <div class="p-5 md:p-0 mt-5 w-full md:w-3/4 md:pr-5 md:border-r-2">
         <div class="grid grid-col-1 md:grid-cols-2 gap-x-3 ">
@@ -60,7 +72,7 @@
                     </div>
                     <div class="h-56 w-56 mx-auto md:mx-0">
 
-                        @if ($posts[0]->image)
+                        @if ($post->image)
 
                         <img src="{{ asset('/storage/posts/' . $post->image) }}" alt="{{
                                 $post->title }}" class="h-full w-full object-cover rounded-md">
@@ -80,7 +92,7 @@
                         debitis saepe reiciendis, libero corporis sit qui cum totam nobis itaque pariatur ab placeat
                         quidem
                         earum eveniet.</p>
-                    <a href="#"
+                    <a href="{{ route('guest.post', $post) }}"
                         class="ml-auto block w-fit rounded-md bg-slate-700 text-white py-2 px-4 mt-2 md:mt-5">Read
                         More</a>
                 </div>
@@ -90,15 +102,15 @@
         </div>
 
         <div class="mt-10 text-end w-full">
-            <a href="#" class="w-full bg-black text-white py-2 px-4 rounded-md">Show more stories</a>
+            <a href="{{ route('guest.posts') }}" class="w-full bg-black text-white py-2 px-4 rounded-md">Show more
+                stories</a>
         </div>
 
     </div>
 
     <x-main.home.ads />
 </section>
+@else
+<p class="text-center font-bold text-3xl my-10">No post found</p>
 @endif
-
-
-
 @endsection

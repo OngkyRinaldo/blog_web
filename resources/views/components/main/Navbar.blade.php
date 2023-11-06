@@ -29,12 +29,12 @@
             <a href="{{ route('guest.index') }}" class="font-bold text-4xl md:text-7xl text-black">B<span
                     class="text-red-500">Log</span> </a>
 
-            <input type="search" class="py-2 px-4 rounded-lg" placeholder="search...">
+            <p id="date-paragraph" class=" text-end text-slate-500 font-semibold" />
         </div>
 
 
 
-        <p id="date-paragraph" class=" text-end text-slate-500 font-semibold" />
+
 
 
 
